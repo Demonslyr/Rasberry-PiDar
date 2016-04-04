@@ -1,0 +1,15 @@
+Recorded times:
+
+Note: Tests recorded in the order they were run.
+The numbers represent ~10 trials per program&input.(they are consistent to ~+/- 1.5ms)
+
+Pi2 = 2015-11-17_213141_0004.csv
+PC = fft_result_2015-11-17_103513_716.csv
+
+Syntax
+[Program name]		[data source (Pi2/PC)]	[Total time to perform only FFT functions]
+
+Fourier_2D_no_post 		Pi2 					Time: 0sec 22.0207msec
+Fourier_2D_post 		Pi2 					Time: 0sec 53.507msec
+Fourier_2D_no_post 		PC 					Time: 0sec 22.243msec
+Fourier_2D_post 		PC 					Time: 0sec 51.8247msec
