@@ -1,2 +1,2 @@
-# Rasberry-PiDar
+# Raspberry-PiDar
 Raspberry Pi based RadarFFT
