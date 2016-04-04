@@ -7,6 +7,7 @@ make:
 	@echo "no_post: for the non post processed version"
 	@echo "info: for instructions"
 	@echo "all: for all versions"
+	@echo "clean: to erase executables"
 	@echo ""
 
 all: post no_post
@@ -27,3 +28,7 @@ info:
 	@echo ""
 	@echo "{header_lines} is the number of lines at the top of te .csv to ignore"
 	@echo ""
+
+clean:
+	-rm Fourier_2D_no_post
+	-rm Fourier_2D_post
