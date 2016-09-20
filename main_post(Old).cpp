@@ -403,28 +403,28 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
 		{
             //cout<<"loop two\n";
             //cout<<"("<<b<<","<<k<<"),a="<<a<<",c="<<c<<",j="<<j<<",l="<<l<<endl;
-            //sqrt(pow(matrix_2d_fi_A[c*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[c*MAT_Y_DIM+k+1],2.0))
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0))<THRESHOLD)
+            //sqrt(pow(matrix_2d_fi_A[j][i][0],2.0)+pow(matrix_2d_fi_A[j][i][1],2.0))
+			if(mat[b*MAT_Y_DIM+k]<THRESHOLD)
 			{
 			continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+j],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+j+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one left
+			if(mat[b*MAT_Y_DIM+j]>=mat[b*MAT_Y_DIM+k])//one left
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+l],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+l+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one right
+			if(mat[b*MAT_Y_DIM+l]>=mat[b*MAT_Y_DIM+k])//one right
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[a*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[a*MAT_Y_DIM+k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one up
+			if(mat[a*MAT_Y_DIM+k]>=mat[b*MAT_Y_DIM+k])//one up
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[c*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[c*MAT_Y_DIM+k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one down
+			if(mat[c*MAT_Y_DIM+k]>=mat[b*MAT_Y_DIM+k])//one down
 			{
 				continue;
 			}
-			peak[0]=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0));
+			peak[0]=mat[b*MAT_Y_DIM+k];
 			peak[1]=b;
 			peak[2]=k;
 			peaks.push_back(peak);
@@ -436,12 +436,6 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
        	totalns+=total.tv_nsec;
      
      //////////////////////////////////////////////////////////////
-     
-    cout<<"\n\nDetected Peaks:\n";
-	for(int z = 0;z<peaks.size();z++)
-	{
-		cout<<"\t"<<"Locx: "<<peaks[z][1]<<"Locy: "<<peaks[z][2]<<", Mag: "<<peaks[z][0]<<endl;
-	}
      //////////////////////////////////////////////////////////////
      //////////////////////////////////////////////////////////////
      
