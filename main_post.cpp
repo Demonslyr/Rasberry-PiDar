@@ -384,9 +384,9 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
      }
     //////////////////////////////////////////////////////////////
     int MAT_X_DIM = 506;
-    int X_LOOP = (MAT_X_DIM-1);
+    int X_LOOP = (MAT_X_DIM-2);
     int MAT_Y_DIM = 128;
-    int Y_LOOP = (MAT_Y_DIM-1);
+    int Y_LOOP = (MAT_Y_DIM-2);
     int NUM_ELEM = (MAT_X_DIM * MAT_Y_DIM);
     //////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////
