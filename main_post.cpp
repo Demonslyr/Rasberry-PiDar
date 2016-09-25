@@ -384,9 +384,9 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
      }
     //////////////////////////////////////////////////////////////
     int MAT_X_DIM = 506;
-    int X_LOOP = (MAT_X_DIM-2);
+    int X_LOOP = (MAT_X_DIM-1);
     int MAT_Y_DIM = 128;
-    int Y_LOOP = (MAT_Y_DIM-2);
+    int Y_LOOP = (MAT_Y_DIM-1);
     int NUM_ELEM = (MAT_X_DIM * MAT_Y_DIM);
     //////////////////////////////////////////////////////////////
     cout<<"Hit his location"<<endl; 
@@ -397,10 +397,10 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
 
     clock_gettime(CLOCK_REALTIME, &tstart);
     //cout<<"before for loops\n";
-	for (int b = 1,a=0,c=2;b<Y_LOOP;b++,a++,c++)
+	for (int b = 1,a=0,c=2;b<X_LOOP;b++,a++,c++)
 	{
         //cout<<"loop one\n";
-		for(int k=1,j=0,l=2; k<X_LOOP;k++,j++,l++)
+		for(int k=1,j=0,l=2; k<Y_LOOP;k++,j++,l++)
 		{
             //cout<<"loop two\n";
             //cout<<"("<<b<<","<<k<<"),a="<<a<<",c="<<c<<",j="<<j<<",l="<<l<<endl;
