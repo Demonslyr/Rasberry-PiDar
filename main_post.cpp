@@ -389,6 +389,7 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
     int Y_LOOP = (MAT_Y_DIM-2);
     int NUM_ELEM = (MAT_X_DIM * MAT_Y_DIM);
     //////////////////////////////////////////////////////////////
+    cout<<"Hit his location"<<endl; 
     //////////////////////////////////////////////////////////////
     vector< vector<int> > peaks;
 	vector<int> peak  (3);
