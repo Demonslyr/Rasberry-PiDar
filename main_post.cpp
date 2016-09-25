@@ -404,27 +404,27 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
             //cout<<"loop two\n";
             //cout<<"("<<b<<","<<k<<"),a="<<a<<",c="<<c<<",j="<<j<<",l="<<l<<endl;
             //sqrt(pow(matrix_2d_fi_A[c*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[c*MAT_Y_DIM+k+1],2.0))
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0))<THRESHOLD)
+			if(sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0))<THRESHOLD)
 			{
 			continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+j],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+j+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one left
+			if(sqrt(pow(matrix_2d_fi_A[b][j],2.0)+pow(matrix_2d_fi_A[b][j+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0)))//one left
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+l],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+l+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one right
+			if(sqrt(pow(matrix_2d_fi_A[b][l],2.0)+pow(matrix_2d_fi_A[b][l+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0)))//one right
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[a*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[a*MAT_Y_DIM+k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one up
+			if(sqrt(pow(matrix_2d_fi_A[a][k],2.0)+pow(matrix_2d_fi_A[a][k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0)))//one up
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[c*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[c*MAT_Y_DIM+k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0)))//one down
+			if(sqrt(pow(matrix_2d_fi_A[c][k],2.0)+pow(matrix_2d_fi_A[c][k+1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0)))//one down
 			{
 				continue;
 			}
-			peak[0]=sqrt(pow(matrix_2d_fi_A[b*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[b*MAT_Y_DIM+k+1],2.0));
+			peak[0]=sqrt(pow(matrix_2d_fi_A[b][k],2.0)+pow(matrix_2d_fi_A[b][k+1],2.0));
 			peak[1]=b;
 			peak[2]=k;
 			peaks.push_back(peak);
