@@ -429,6 +429,8 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
 			peak[1]=b;
 			peak[2]=k;
 			peaks.push_back(peak);
+            cout<<"B: "<<b<<" A: "<<a<<" C: "<<c<<endl
+            cout<<"K: "<<k<<" J: "<<j<<" L: "<<l<<endl
 		}
 	}
 	clock_gettime(CLOCK_REALTIME, &tend);
