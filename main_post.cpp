@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
     vector<double> mag(128);//vector to hold array megnitudes can be made more efficient by having a 128 vector of 506 vectors but it's left this way for ease of use.
 
     vector< vector<double> > cols;//vector for columns
-    vector< vector<double> >	matrix_2d_A_MAG;//vector to hold columns of magnitudes
+    vector< vector<double> > matrix_2d_A_MAG;//vector to hold columns of magnitudes
     vector< vector<double> > matrix_2d_B_MAG;//vector to hold columns of magnitudes
 
     vector< vector< vector<double> > > matrix_2d_in_A;//mid calculation 2d array_A
@@ -138,14 +138,14 @@ int main(int argc, char *argv[])
             cols.push_back(valc);
         }
         matrix_2d_in_A.push_back(cols);
-	matrix_2d_fi_A.push_back(cols);
-	matrix_2d_in_B.push_back(cols);
-	matrix_2d_fi_B.push_back(cols);
+        matrix_2d_fi_A.push_back(cols);
+        matrix_2d_in_B.push_back(cols);
+        matrix_2d_fi_B.push_back(cols);
         cols.clear();
     }
     for(int i=0;i<506;i++) {
-	matrix_2d_A_MAG.push_back(mag);
-	matrix_2d_B_MAG.push_back(mag);
+        matrix_2d_A_MAG.push_back(mag);
+	    matrix_2d_B_MAG.push_back(mag);
     }
     
     ///////////////////////////////////////////////////////////
@@ -380,8 +380,13 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
 	    matrix_2d_fi_A[k][i][1] = final2[j][1];
 	    matrix_2d_fi_A[j][i][0] = final2[k][0];
 	    matrix_2d_fi_A[j][i][1] = final2[k][1];
+        matrix_2d_A_MAG[k][i] = 20*log10(sqrt(pow(final2[j][0],2.0)+pow(final2[j][1],2.0)));
+        matrix_2d_A_MAG[j][i] = 20*log10(sqrt(pow(final2[k][0],2.0)+pow(final2[k][1],2.0)));
 	}
      }
+     
+     
+     
     //////////////////////////////////////////////////////////////
     int MAT_X_DIM = 506;
     int X_LOOP = (MAT_X_DIM-1);
@@ -389,7 +394,7 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
     int Y_LOOP = (MAT_Y_DIM-1);
     int NUM_ELEM = (MAT_X_DIM * MAT_Y_DIM);
     //////////////////////////////////////////////////////////////
-    cout<<"Hit his location"<<endl; 
+    cout<<"Hit this location"<<endl; 
     //////////////////////////////////////////////////////////////
     vector< vector<int> > peaks;
 	vector<int> peak  (3);
@@ -405,27 +410,28 @@ std::cout<<"Begin FFT matrix A"<<std::endl;
             //cout<<"loop two\n";
             //cout<<"("<<b<<","<<k<<"),a="<<a<<",c="<<c<<",j="<<j<<",l="<<l<<endl;
             //sqrt(pow(matrix_2d_fi_A[c*MAT_Y_DIM+k],2.0)+pow(matrix_2d_fi_A[c*MAT_Y_DIM+k+1],2.0))
-			if(sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0))<THRESHOLD)
+            
+			if(matrix_2d_A_MAG[b][k])<THRESHOLD)
 			{
 			continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b][j][0],2.0)+pow(matrix_2d_fi_A[b][j][1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0)))//one left
+			if(matrix_2d_A_MAG[b][j]>=matrix_2d_A_MAG[b][k])//one left
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[b][l][0],2.0)+pow(matrix_2d_fi_A[b][l][1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0)))//one right
+			if(matrix_2d_A_MAG[b][l]>=matrix_2d_A_MAG[b][k])//one right
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[a][k][0],2.0)+pow(matrix_2d_fi_A[a][k][1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0)))//one up
+			if(matrix_2d_A_MAG[a][k]>=matrix_2d_A_MAG[b][k])//one up
 			{
 				continue;
 			}
-			if(sqrt(pow(matrix_2d_fi_A[c][k][0],2.0)+pow(matrix_2d_fi_A[c][k][1],2.0))>=sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0)))//one down
+			if(matrix_2d_A_MAG[c][k]>=matrix_2d_A_MAG[b][k])//one down
 			{
 				continue;
 			}
-			peak[0]=sqrt(pow(matrix_2d_fi_A[b][k][0],2.0)+pow(matrix_2d_fi_A[b][k][1],2.0));
+			peak[0]=matrix_2d_A_MAG[b][k];
 			peak[1]=b;
 			peak[2]=k;
 			peaks.push_back(peak);
